@@ -113,7 +113,7 @@ function toggleTheme(){dark.value=!dark.value;nextTick(draw);}
 
 <template>
 <div class="app" :class="{dark}">
-  <header class="titlebar"><div class="brand-icon"><Activity :size="19"/></div><strong>Host Studio</strong><span class="version">v0.1.0</span><span class="title-caption">嵌入式设备工作台</span><span class="preview-badge">{{desktop?'DESKTOP':'WEB PREVIEW'}}</span></header>
+  <header class="titlebar"><img class="brand-icon" src="/app-icon.png" alt="Host Studio 图标"><strong>Host Studio</strong><span class="version">v0.1.0</span><span class="title-caption">嵌入式设备工作台</span><span class="preview-badge">{{desktop?'DESKTOP':'WEB PREVIEW'}}</span></header>
   <nav class="topnav">
     <div class="tabs"><button v-for="item in tabs" :key="item" :class="{active:tab===item}" @click="switchTab(item)">{{item}}</button><button class="add-tab" title="框架扩展说明" @click="showHelp=true"><Plus :size="19"/></button></div>
     <div class="nav-tools"><span class="workspace"><span class="tiny-dot"></span>默认工作空间</span><button title="查看运行日志" @click="sections.logs=true;log('通知与错误显示在右侧运行日志中')"><Bell :size="19"/></button><button title="框架说明" @click="showHelp=true"><LayoutGrid :size="19"/></button><button title="切换明暗主题" @click="toggleTheme"><Sun v-if="dark" :size="19"/><Moon v-else :size="19"/></button><button title="连接设置" @click="sections.connection=!sections.connection"><Settings2 :size="19"/></button></div>
@@ -154,6 +154,6 @@ function toggleTheme(){dark.value=!dark.value;nextTick(draw);}
     </aside>
   </div>
   <footer class="bottom-bar"><div class="status"><span class="tiny-dot" :class="{green:connected}"></span>{{connected?'模拟设备已连接':'等待设备连接'}}<span class="footer-divider"></span><span>{{running?'遥测采集中':'工作空间就绪'}}</span></div><div class="bottom-actions"><button class="text-button" :disabled="!running" @click="toggleRecording"><Circle :size="16" :class="{recording}"/>{{recording?'停止录制':'录制数据'}}</button><button class="text-button export-action" :disabled="!records.length" @click="exportCsv"><Download :size="16"/>导出</button><button class="primary" :disabled="!connected" @click="toggleRun"><Square v-if="running" :size="18"/><Play v-else :size="19"/>{{running?'暂停采集':'开始采集'}}</button></div></footer>
-  <div v-if="showHelp" class="modal-overlay" @click.self="showHelp=false"><section class="card modal"><button class="close" title="关闭说明" @click="showHelp=false"><X :size="20"/></button><div class="brand-icon"><Activity :size="22"/></div><h2>为下一台设备，准备好。</h2><p>Host Studio 将通信适配、设备协议与工作台界面分开。新项目可复用连接设置、参数编辑、遥测与记录组件。</p><p>本版本内置 FOC 模拟器。串口、TCP/UDP、USB HID、BLE 提供 Rust 底层适配；连接真实设备前需实现对应协议、握手与设备身份校验。USB Bulk 为后续扩展。</p><button class="primary" @click="showHelp=false">开始探索<ChevronRight :size="17"/></button></section></div>
+  <div v-if="showHelp" class="modal-overlay" @click.self="showHelp=false"><section class="card modal"><button class="close" title="关闭说明" @click="showHelp=false"><X :size="20"/></button><img class="brand-icon" src="/app-icon.png" alt="Host Studio 图标"><h2>为下一台设备，准备好。</h2><p>Host Studio 将通信适配、设备协议与工作台界面分开。新项目可复用连接设置、参数编辑、遥测与记录组件。</p><p>本版本内置 FOC 模拟器。串口、TCP/UDP、USB HID、BLE 提供 Rust 底层适配；连接真实设备前需实现对应协议、握手与设备身份校验。USB Bulk 为后续扩展。</p><button class="primary" @click="showHelp=false">开始探索<ChevronRight :size="17"/></button></section></div>
 </div>
 </template>

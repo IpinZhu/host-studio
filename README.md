@@ -1,5 +1,7 @@
 # Host Studio
 
+AI 开发者请先阅读 [AGENTS.md](AGENTS.md)，其中包含设备接入步骤、分层约定和验收要求。
+
 Rust + Tauri 2 + Vue 3 的嵌入式上位机框架起点。界面参考用户提供的浅色卡片工作台：顶部标签、左侧设备与参数、右侧连接与日志、底部操作栏。
 
 ## 开始使用
@@ -56,3 +58,7 @@ npm run tauri build
 ```
 
 硬件适配器需要各平台实机验证；本地回环测试不能替代 USB、串口或 BLE 验收。
+
+## 应用图标
+
+原图保存在 `assets/app-icon-source.png`。桌面资源位于 `src-tauri/icons/`，界面与网页图标为 `public/app-icon.png`。更换时同步生成这些文件；窗口启动时显式加载 128px 图标，构建脚本跟踪图标目录变化。

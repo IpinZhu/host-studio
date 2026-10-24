@@ -1,6 +1,6 @@
 use host_core::{DeviceDriver, Parameters, Sample, SimulatedDevice};
 use std::sync::Mutex;
-use tauri::State;
+use tauri::{Manager, State};
 #[derive(Default)]
 struct Session(Mutex<Option<SimulatedDevice>>);
 #[tauri::command]
@@ -55,6 +55,14 @@ async fn discover(kind: String) -> Result<Vec<host_transport::Endpoint>, String>
 pub fn run() {
     tauri::Builder::default()
         .manage(Session::default())
+        .setup(|app| {
+            if let Some(window) = app.get_webview_window("main") {
+                window.set_icon(tauri::image::Image::from_bytes(include_bytes!(
+                    "../icons/128x128.png"
+                ))?)?;
+            }
+            Ok(())
+        })
         .invoke_handler(tauri::generate_handler![
             connect_simulator,
             disconnect,

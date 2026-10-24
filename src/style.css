@@ -19,3 +19,6 @@
 
 .sidebar > .card { flex-shrink: 0; }
 
+
+img.brand-icon { object-fit: contain; background: #fff; flex-shrink: 0; }
+
